@@ -1,0 +1,20 @@
+{
+  "name": "doggie_model",
+  "version": "1.0.1",
+  "description": "the doggie project model layer,including all business code",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+	"start": "babel-node"
+  },
+  "author": "deanchen",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.2",
+    "jest": "^20.0.4"
+  },
+  "dependencies": {
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
