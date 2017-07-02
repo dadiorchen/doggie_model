@@ -1,3 +1,4 @@
+// @flow
 /*
  * the fund model : deal with the fund data, fetch data from sina, generate the data for render a chart
  */
@@ -14,8 +15,8 @@ export class FundModel {
 	/*
 	 * to fetch data from website , and return a promise
 	 */
-	fetchFundData(fundNumber,limit = 10){
-		if(!fundNumber) throw new Error('need fundNumber:',fundNumber);
+	fetchFundData(fundNumber :any,limit :number = 10){
+		if(!fundNumber) throw new Error(`need fundNumber:${fundNumber}`);
 		console.debug('fetch fund:',fundNumber);
 		return this.getTotalNum(fundNumber).then(totalNum => {
 			if(totalNum > limit){
@@ -45,7 +46,7 @@ export class FundModel {
 	}
 
 
-	getTotalNum(fundNumber){
+	getTotalNum(fundNumber :any){
 		return new Promise((resolve,reject) => {
 			let url = `http://stock.finance.sina.com.cn/fundInfo/api/openapi.php/CaihuiFundInfoService.getNav?symbol=${fundNumber}&datefrom=&dateto=&page=1`;
 			console.debug('to fetch url:',url);
@@ -68,7 +69,7 @@ export class FundModel {
 		});
 	}
 
-	fetchOnePageFundData(fundNumber,pageNum){
+	fetchOnePageFundData(fundNumber :any,pageNum :number){
 		return new Promise((resolve,reject) => {
 			let url = `http://stock.finance.sina.com.cn/fundInfo/api/openapi.php/CaihuiFundInfoService.getNav?symbol=${fundNumber}&datefrom=&dateto=&page=${pageNum}`;
 			console.debug('to fetch url:',url);
@@ -102,25 +103,35 @@ export class FundModel {
 	 *   	jjjz:1.0622,
 	 *   },... ]
 	 * */
-	calculateEarning(dataList,beginDate,endDate){
+	calculateEarning(dataList :Array<FundData>,beginDate :number,endDate :number){
 		let begin = this.getNearest(dataList,beginDate);
 		let end = this.getNearest(dataList,endDate);
 		if(!begin || !end){
-			throw new Error('no date find:',begin,end);
+			throw new Error("no date find:" + begin.toString() + "|" + end.toString());
 		}
 		const r =  this.earning(begin.jjjz,end.jjjz);
 		console.debug(`calcurate earning,begin:${begin},end:${end},result:${r}`);
 		return r;
 	}
 
+<<<<<<< HEAD
 	earning(price1,price2){
 		//console.debug(`price1:${price1},price2:${price2}`);
+=======
+<<<<<<< HEAD
+	earning(price1 :number,price2 :number){
+		console.debug(`price1:${price1},price2:${price2}`);
+=======
+	earning(price1,price2){
+		//console.debug(`price1:${price1},price2:${price2}`);
+>>>>>>> 473f4522fc171977025ae3417c3df5bc6a06325e
+>>>>>>> ac1a1c6ca8db17a060635647db42fd376c9d2693
 		return (price2-price1)/price1;
 	}
 
-	getNearest(dataList,date){
+	getNearest(dataList :Array<FundData>,date :number){
 		if(dataList && dataList.length > 0){
-			for(let d in dataList){
+			for(let d = 0 ; d < dataList.length ; d++ ){
 				//console.debug(`the list date:${dataList[d].date},the date:${date}`);
 				if(dataList[d].date >= date){
 					return dataList[d];
@@ -129,12 +140,11 @@ export class FundModel {
 			//if not found , get the lastest one
 			return dataList[dataList.length -1];
 		}else{
-			throw new Error('null data list:',dataList);
+			throw new Error("null data list:," );
 		}
-		return null;
 	}
 
-	calculatePeriodEarning(dataList,beginDate,periodDays){
+	calculatePeriodEarning(dataList :Array<FundData>,beginDate :number,periodDays :number){
 		let endDate = Utils.getDateAfter(beginDate,periodDays);
 		return this.calculateEarning(dataList,beginDate,endDate);
 	}
@@ -147,5 +157,19 @@ export class FundModel {
 /*
  * the structure for fund data
  * */
-export class FundData {
+//export class FundData {
+//	constructor(date :number,jjjz :number){
+//		this.date = date;
+//		this.jjjz = jjjz;
+//	}
+//	date :number;
+//	jjjz :number;
+//	toString() :string {
+//		return `fundData:date:${this.date},jjjz:${this.jjjz}`;
+//	}
+//}
+
+export type FundData = {
+	date : number,
+	jjjz : number,
 }
