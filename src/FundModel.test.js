@@ -1,9 +1,12 @@
+// @flow
 /*
  * test fund model
  */
 import {FundModel} from './FundModel.js'
+import type {FundData} from './FundModel.js'
 
 let DEBUG = true;
+// $FlowFixMe: for jest 
 console.debug = (...args) => {
 	if(DEBUG){
 		console.log(...args);
@@ -32,30 +35,30 @@ describe('fund model test',() => {
 
 
 	const dataList = [
-		{
-			date:20170101,
-			jjjz:1.00,
-		},
-		{
-			date:20170102,
-			jjjz:1.10,
-		},
-		{
-			date:20170103,
-			jjjz:1.20,
-		},
-		{
-			date:20170104,
-			jjjz:1.30,
-		},
-		{
-			date:20170105,
-			jjjz:1.40,
-		},
-		{
-			date:20170106,
-			jjjz:1.50,
-		},
+	{
+		date : 20170101,
+		jjjz : 1.00,
+	},
+	{
+		date : 20170102,
+		jjjz : 1.10,
+	},
+	{
+		date : 20170103,
+		jjjz : 1.20,
+	},
+	{
+		date : 20170104,
+		jjjz : 1.30,
+	},
+	{
+		date : 20170105,
+		jjjz : 1.40,
+	},
+	{
+		date : 20170106,
+		jjjz : 1.50,
+	}
 	]
 		
 	it('test: calculate earing:',() => {

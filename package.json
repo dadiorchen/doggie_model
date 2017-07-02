@@ -5,13 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-	"start": "babel-node"
+    "start": "babel-node",
+    "flow": "flow"
   },
   "author": "deanchen",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.5.2",
+    "babel-preset-flow": "^6.23.0",
+    "flow-bin": "^0.48.0",
     "jest": "^20.0.4"
   },
   "dependencies": {
