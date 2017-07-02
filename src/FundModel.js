@@ -109,11 +109,18 @@ export class FundModel {
 		if(!begin || !end){
 			throw new Error("no date find:" + begin.toString() + "|" + end.toString());
 		}
-		return this.earning(begin.jjjz,end.jjjz);
+		const r =  this.earning(begin.jjjz,end.jjjz);
+		console.debug(`calcurate earning,begin:${begin},end:${end},result:${r}`);
+		return r;
 	}
 
+<<<<<<< HEAD
 	earning(price1 :number,price2 :number){
 		console.debug(`price1:${price1},price2:${price2}`);
+=======
+	earning(price1,price2){
+		//console.debug(`price1:${price1},price2:${price2}`);
+>>>>>>> 473f4522fc171977025ae3417c3df5bc6a06325e
 		return (price2-price1)/price1;
 	}
 
